@@ -3,6 +3,6 @@ module.exports = {
   trailingComma: 'es5',
   singleQuote: true,
   semi: true,
-  parser: 'flow',
+  parser: 'typescript',
   endOfLine: 'auto',
 };
