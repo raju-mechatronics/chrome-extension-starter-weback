@@ -10,7 +10,13 @@ module.exports = {
     content: './src/content/index.ts',
   },
   module: {
-    rules: [{ test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ }],
+    rules: [
+      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
