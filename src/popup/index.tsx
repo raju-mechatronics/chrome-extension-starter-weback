@@ -1,14 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { render } from 'react-dom';
-
-
+import UrlHandler from './components/urlHandler';
 
 const Root: FunctionComponent = () => {
-
-
   return (
-    <div>
-      Hello world
+    <div style={{ width: 300 }}>
+      <UrlHandler />
     </div>
   );
 };

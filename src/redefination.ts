@@ -1,5 +1,5 @@
-export const storage = chrome.storage.local;
-export const cookies = chrome.cookies;
+export const Storage = chrome.storage.local;
+export const Cookies = chrome.cookies;
 
 export const getActiveTab = async () => {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });

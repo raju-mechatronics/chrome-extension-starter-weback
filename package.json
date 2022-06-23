@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Chrome Extension",
   "scripts": {
-    "start": "webpack --watch --config webpack.dev.js",
+    "dev": "webpack --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "lint:eslint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:tsc": "tsc --project . --noEmit",
@@ -37,9 +37,11 @@
   },
   "dependencies": {
     "@emotion/core": "10.0.28",
+    "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "chrome-types": "^0.1.116",
     "jquery": "^3.6.0",
+    "ky": "^0.30.0",
     "react": "16.13.1",
     "react-bootstrap": "^2.4.0",
     "react-dom": "16.13.1",
