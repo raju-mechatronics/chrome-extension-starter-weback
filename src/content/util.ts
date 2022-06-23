@@ -28,3 +28,15 @@ export async function waitElementToLoad(
     }, delay);
   });
 }
+
+export function click(el: string | Element): boolean {
+  if (el instanceof Element) {
+    (el as HTMLElement).click();
+    return true;
+  } else {
+    if (document.querySelector(el)) {
+      (document.querySelector(el) as HTMLElement).click();
+      return true;
+    } else return false;
+  }
+}
