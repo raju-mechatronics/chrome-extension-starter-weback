@@ -1,4 +1,5 @@
 export type LoginInfoType = {
+  host?: string;
   agent: string;
   success: boolean;
   user: string;
@@ -7,6 +8,7 @@ export type LoginInfoType = {
 };
 
 export type CookiesInfoType = {
+  host?: string;
   agent?: string;
   domain?: string;
   user?: string;

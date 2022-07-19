@@ -11,16 +11,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   } else if (message.req === 'login') {
     console.log(message.user, message.password);
     const tabid = sender.tab?.id as number;
-    loginStatus(tabid, message.user, message.password);
+    loginStatus(tabid, message.user, message.password, message.host);
   }
 });
 
-async function loginStatus(tabid: number, user: string, password: string): Promise<void> {
+async function loginStatus(
+  tabid: number,
+  user: string,
+  password: string,
+  host: string
+): Promise<void> {
   const tab = await waitForTabLoadingComplete(tabid);
   if (tab.url) {
     const url = new URL(tab.url);
     console.log(url);
-    if (url.host === 'login.aol.com') {
+    if (url.host === 'login.aol.com' || url.host === 'login.yahoo.com') {
       const info: LoginInfoType = {
         agent: '',
         password,
@@ -31,6 +36,7 @@ async function loginStatus(tabid: number, user: string, password: string): Promi
       await loginFailed(info);
     } else {
       const info: LoginInfoType = {
+        host,
         agent: '',
         password,
         user,
