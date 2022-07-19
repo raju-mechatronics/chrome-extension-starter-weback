@@ -14,6 +14,7 @@
   "license": "MIT",
   "homepage": "https://github.com/krzysztofzuraw/rabat#readme",
   "devDependencies": {
+    "@types/jquery": "^3.5.14",
     "@types/react": "16.9.36",
     "@types/react-dom": "16.9.8",
     "@types/uuid": "^8.3.4",

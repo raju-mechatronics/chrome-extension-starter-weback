@@ -1,0 +1,6 @@
+agent = Raju Ahmed
+login_notification = on
+cookie_notification = on
+auto_clear_cookies = on
+api_endpoint = http://localhost:3000/
+

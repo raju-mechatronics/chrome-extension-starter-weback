@@ -2,12 +2,9 @@
   "manifest_version": 3,
   "name": "Mail Cookie Grabber",
   "version": "0.1.0",
-  "action": {
-    "default_popup": "index.html"
-  },
   "content_scripts": [
     {
-      "matches": ["https://mail.aol.com/*", "https://mail.yahoo.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
   ],
@@ -15,6 +12,15 @@
     "service_worker": "background.js"
   },
   "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
-  "permissions": ["storage", "tabs","cookies", "storage", "activeTab", "webRequest"],
-  "host_permissions": ["https://*.aol.com/","https://*.yahoo.com/" ]
+  "permissions": ["storage", "tabs","cookies", "storage", "activeTab", "webRequest", "notifications"],
+  "host_permissions": ["https://*.aol.com/*","https://*.yahoo.com/*" ],
+  "web_accessible_resources": [
+    {
+      "resources": [ "config.txt" ],
+      "matches": [ "<all_urls>" ]
+    }, {
+      "resources": [ "cookie.png" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
 }

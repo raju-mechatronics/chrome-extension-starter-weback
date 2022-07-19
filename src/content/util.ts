@@ -1,3 +1,5 @@
+import { sendMessage } from '../redefination';
+
 export async function wait(ms: number): Promise<void> {
   return new Promise((res) => setTimeout(res, ms));
 }
@@ -27,4 +29,10 @@ export async function waitElementToLoad(
       checkLimit--;
     }, delay);
   });
+}
+
+export async function getTabId(): Promise<number> {
+  const res = await sendMessage({ req: 'tabid' });
+  console.log(res);
+  return res;
 }

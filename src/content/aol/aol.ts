@@ -1,7 +1,9 @@
-import { sendMessage, Storage } from '../redefination';
-import { wait, waitElementToLoad } from './util';
+import { sendMessage } from '../../redefination';
+import { wait, waitElementToLoad } from '../util';
+import { configHandler } from '../../background/configHandler';
 
 export default async function aol() {
+  const config = await configHandler();
   const urls = [
     'https://aol.com',
     'https://www.aol.com',
@@ -19,9 +21,6 @@ export default async function aol() {
   sendMessage({ GET_COOKIES: true, extraCookies, user: user, domain: 'aol.com' });
 
   document.querySelector('span.signOutLink')?.addEventListener('click', () => {
-    Storage.get('clear').then((e) => {
-      const clear = e.clear;
-      if (clear) sendMessage({ DELETE_COOKIES: true, urls: urls });
-    });
+    if (config.auto_clear_cookies) sendMessage({ DELETE_COOKIES: true, urls: urls });
   });
 }
